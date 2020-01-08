@@ -1,0 +1,12 @@
+---
+ - name: Check if RPM is installed
+   hosts: test
+   become: yes
+   tasks:
+    - name: Check if httpd is installed or not
+      package_facts:
+       manager: auto
+    - name: httpd test result
+      debug:
+       msg: httpd found
+      when: "'httpd' in ansible_facts.packages"
